@@ -1,0 +1,111 @@
+1. Install sinch_sms gem
+2. Create ActiveResource class, call it sms or message?
+3. Create database table called message and have a method that creates a new message.
+
+
+  
+4. Modified Gemfile to point to new sinch_sms gem code. Modified this code to include
+   'from' field when using the SinchSms.send method.
+   
+5. Added 
+    config.time_zone = 'Eastern Time (US & Canada)'
+    config.active_record.default_timezone = :local
+   to application.rb to display correct timestamps.
+  
+6. Use figaro gem to generate application.yml - this file should not be added to github repo.
+
+
+-- set up one to many database example --
+class CreateTags < ActiveRecord::Migration
+  def change
+    create_table :tags do |t|
+			t.string :title
+			t.string :image
+      t.timestamps
+    end
+  end
+end
+
+class CreateDestinations < ActiveRecord::Migration
+  def change
+    create_table :destinations do |t|
+			t.string :name
+			t.string :image
+			t.string :description
+			t.references :tag
+      t.timestamps
+    end
+  end
+end
+
+Nice work. What did we just do?
+
+We added two string columns title and image to the tags table
+We added three string columns name, image, and description to the destinations table
+We also added the line t.references :tag to the destinations table. This adds a foreign key pointing to the tags table.
+Finally we ran the migrations to update the database, and seeded the database with the data in db/seeds.rb.
+
+ActiveRecord::Schema.define(version: 20150408005247) do
+
+  create_table "destinations", force: true do |t|
+    t.string   "name"
+    t.string   "image"
+    t.string   "description"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
+    t.string   "title"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+== README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.

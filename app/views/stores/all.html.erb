@@ -1,0 +1,41 @@
+  <aside style="float: left; position: fixed; width: 30%;">
+    <% arr = [] %>
+    <% @messages.each do |message| %>
+      <% if message.to != @store.phone %>
+        <% arr.push(message.to)%>
+      <% else arr.push(message.from) %>
+      <%end%>
+    <% end %>
+    <% arr %>
+    <% arr.uniq! %>
+    <% arr.each do |item| %>
+      <p><%= item[1..-1] %></p>
+    <% end %>
+  </aside>
+
+<div style="width: 35%; margin: 0 auto;">
+  
+<h1 style="text-align:center"> All for <%= @store.name %>, <%=@store.phone%> </h1>
+  
+<% @messages.each do |message| %>
+  
+  <%if message.to == @store.phone %>
+    <!-- Incoming messages -->
+    <div style="float:left;width: 75%;background-color:skyblue;border-radius:20px;height: auto;margin-bottom: 20px;">
+      <h3 style="font-size:20px; padding-left: 16px;">" <%= message.message %> "</h3>
+      <p style="padding-left:20px; margin-top:-20px;"><%= message.created_at.strftime("%A %d at %I:%M %p") %> from <%=message.from%></p>
+    </div>
+  
+  <%else %>
+  <!-- Outgoing messages -->
+    <div style="float:right;text-align: right;width:75%;background-color:#CFCFCF; border-radius:20px; height: auto; margin-bottom:20px;"> <!-- margin-left 177px -->
+      <h3 style="font-size:20px; padding-right: 16px;">" <%= message.message %> "</h3>
+      <p style="padding-right:20px; margin-top:-20px;"><%= message.created_at.strftime("%A %d at %I:%M %p") %> to <%=message.to%></p>
+    </div>
+  
+  <% end %>
+<% end %>
+  
+  
+</div>
+
