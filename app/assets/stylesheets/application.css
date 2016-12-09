@@ -17,3 +17,11 @@
 body {
   font-family: Roboto;
 }
+
+.field-text {
+    font-size: 15;
+    font-style: italic;
+}
+.font-20 {
+    font-size: 20px;
+}

@@ -1,0 +1,24 @@
+<%= render 'shared/errors', obj: @store %>
+
+<%= form_for(@store) do |f| %>
+    <div class="field">
+        <%= f.label :name, class: "field-text" %>
+        </br>
+        <div style=""><%= f.text_field :name, class: "font-20" %></div>
+    </div>
+    <div class="field">
+        <p style="margin: 0px;">phone must be in format: "12345678901"</p>
+        <%= f.label :phone, class: "field-text" %>
+        </br>
+        <%= f.text_field :phone, class: "font-20" %>
+    </div>
+    <div class="field">
+        <%= f.label :nabp, class: "field-text" %>
+        </br>
+        <%= f.text_field :nabp, class: "font-20" %>
+    </div>
+    <div class="actions">
+        <%= f.submit %>
+    </div>
+    </br>
+<% end %>

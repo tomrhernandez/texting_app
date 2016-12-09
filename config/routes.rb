@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   
-  resources :stores, except: [:show, :index]
+  resources :stores
   resources :messages
   get '/:nabp/all' => 'stores#all'
   get '/:nabp/inbox' => 'stores#inbox', as: 'inbox'
+  
+  get '/login', to: 'logins#new'
+  post '/login', to: 'logins#create'
+  get '/logout', to: 'logins#destroy'
+  
   #post '/sms' => 'sms#create'
   
   #resources :people, except: [:new, :edit]
