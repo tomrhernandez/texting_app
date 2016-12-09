@@ -9,7 +9,7 @@ class StoresController < ApplicationController
     
     @store = Store.find_by(nabp: params[:nabp])
     if @store.nil?
-      render :text => "Store with that nabp #{params[:nabp]} number not found"
+      render :text => "Store with that nabp #{params[:nabp]} number not found" and return
     else
       @messages = @store.messages
     end

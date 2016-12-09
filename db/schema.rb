@@ -11,26 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303195818) do
+ActiveRecord::Schema.define(version: 20161209144815) do
 
   create_table "messages", force: :cascade do |t|
     t.string   "to"
     t.string   "from"
-    t.string   "message"
+    t.text     "message"
+    t.boolean  "qs_read",    default: false
     t.integer  "store_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.boolean  "qs_read",    default: false
   end
 
   create_table "stores", force: :cascade do |t|
     t.string   "name"
     t.string   "phone"
+    t.string   "nabp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "nabp"
   end
 
   add_index "stores", ["phone"], name: "index_stores_on_phone"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
 end

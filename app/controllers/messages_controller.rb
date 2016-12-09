@@ -32,7 +32,7 @@ class MessagesController < ApplicationController
     logger.warn "*** END RAW REQUEST HEADERS ***"
   end
   
-  # Send and receive messges. Save to database.
+  # Send and receive messages. Save to database.
   def create2
     
     # Do this if the event is incoming. We get the incomingSms event from Sinch.
