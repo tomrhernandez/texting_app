@@ -20,7 +20,7 @@ class LoginsController < ApplicationController
    def destroy
        session[:user_id] = nil
        flash[:success] = "You have logged out"
-       render :text => "You have logged out"
+       redirect_to login_path
    end
     
     

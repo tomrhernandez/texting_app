@@ -1,24 +1,22 @@
 <%= render 'shared/errors', obj: @store %>
 
-<%= form_for(@store) do |f| %>
-    <div class="field">
-        <%= f.label :name, class: "field-text" %>
-        </br>
-        <div style=""><%= f.text_field :name, class: "font-20" %></div>
+    <%= form_for(@store) do |f| %>
+        <div class="form-group">
+            <%= label_tag :name, nil, class: "font-20" %>
+            <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+            <%= label_tag :phone, nil, class: "font-20" %>
+            <%= f.text_field :phone, class: "form-control" %>
+            <p id="passwordHelpBlock" class="form-text text-muted">phone must be in format: "12345678901"</p>
+        </div>
+        <div class="form-group">
+            <%= label_tag :nabp, nil, class: "font-20" %>
+            <%= f.text_field :nabp, class: "form-control" %>
+        </div>
+        <%= f.submit(@store.new_record? ? 'Create' : 'Save', class: "btn btn-success pull-right") %>
+    <% end %>
+    <%= link_to "Back to Stores", stores_path, class: "btn btn-info" %>
     </div>
-    <div class="field">
-        <p style="margin: 0px;">phone must be in format: "12345678901"</p>
-        <%= f.label :phone, class: "field-text" %>
-        </br>
-        <%= f.text_field :phone, class: "font-20" %>
-    </div>
-    <div class="field">
-        <%= f.label :nabp, class: "field-text" %>
-        </br>
-        <%= f.text_field :nabp, class: "font-20" %>
-    </div>
-    <div class="actions">
-        <%= f.submit %>
-    </div>
-    </br>
-<% end %>
+    
+</div>
