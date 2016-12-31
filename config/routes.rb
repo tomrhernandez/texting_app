@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  root 'logins#new'
   resources :stores
   resources :messages
   get '/:nabp/all' => 'stores#all'

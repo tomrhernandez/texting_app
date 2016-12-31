@@ -8,7 +8,8 @@ class StoresController < ApplicationController
   def create
     @store = Store.new(name: params[:store][:name], phone: params[:store][:phone], nabp: params[:store][:nabp])
     if @store.save
-      redirect_to stores_path, notice: "Store created"
+      flash[:success] = "Store Created"
+      redirect_to stores_path
     else
       render 'new'
     end
@@ -27,7 +28,8 @@ class StoresController < ApplicationController
   def update
     @store = Store.find_by(id: params[:id])
     @store.update(name: params[:store][:name], phone: params[:store][:phone], nabp: params[:store][:nabp])
-    redirect_to edit_store_path(@store), notice: 'Update successful'
+    flash[:success] = "Store Updated"
+    redirect_to stores_path
   end
   
   # Find by NABP number and only show incoming messages
