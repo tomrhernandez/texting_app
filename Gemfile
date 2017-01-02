@@ -11,7 +11,7 @@ gem 'foreigner'
 gem 'activeresource'
 
 # Sinch gem for sms texting
-gem 'sinch_sms_send', :path => "~/workspace/sinch_sms_send-2.3"
+gem 'sinch_sms_send'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
