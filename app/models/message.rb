@@ -10,11 +10,11 @@ class Message < ActiveRecord::Base
   end
   
   def self.verify_key_and_secret(key, secret)
-    key == ENV["QS_API_KEY"] && secret == ENV["QS_API_SECRET"]
+    key == ENV["qs_api_key"] && secret == ENV["qs_api_secret"]
   end
   
   def self.verify_sinch_origin(key)
-    key == ENV["SINCH_SIGNED"]
+    key == ENV["sinch_signed"]
   end
   
 end

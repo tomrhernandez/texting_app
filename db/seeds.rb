@@ -6,11 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Store.create(name: "First Pharmacy", phone: "14043419118", nabp: "1111111")
-Store.create(name: "Second Pharmacy", phone: "14043419117", nabp: "2222222")
+Store.create(name: "First Pharmacy", phone: "14043419132", nabp: "1111111")
+#Store.create(name: "Second Pharmacy", phone: "14043419117", nabp: "2222222")
+
 ### Simulated messages to and from Patient and Pharmacy ###
+
 # From Patient to Pharmacy
 Message.create(to: "14043419118", from: "16168813870", message: "Please refill all my medications", store_id: 1)
+
 # Response from Pharmacy to Patient
 Message.create(to: "16168813870", from: "14043419118", message: "Your medications are ready for pick up. Thank you and have a nice day!", store_id: 1, qs_read: true)
 Message.create(to: "14043419118", from: "16168813870", message: "Refill my blood pressure medicine", store_id: 1)

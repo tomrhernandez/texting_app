@@ -23,7 +23,7 @@ class MessagesController < ApplicationController
     end  
   end
   
-  def create
+  def create2
     logger.warn "*** BEGIN RAW REQUEST HEADERS ***"
       self.request.env.each do |header|
         logger.warn "#{header[0]}:#{header[1]}"
@@ -33,7 +33,7 @@ class MessagesController < ApplicationController
   end
   
   # Send and receive messages. Save to database.
-  def create2
+  def create
     
     # Do this if the event is incoming. We get the incomingSms event from Sinch.
     if params[:event] == "incomingSms"
@@ -58,6 +58,7 @@ class MessagesController < ApplicationController
             @message = Message.new({:to => params[:to], :from => @store.phone, :message => params[:message], :store_id => @store.id, :qs_read => true})
             @message.save
             #SinchSms.send(ENV["SINCH_API_KEY"], ENV["SINCH_API_SECRET"], params[:message], params[:to], params[:from])
+            SinchSms.send(ENV["sinch_api_key"], ENV["sinch_api_secret"], params[:message], params[:to], params[:from])
             render :text => "Message delivered!"
         else
            render :text => "API Key and Secret not valid"
