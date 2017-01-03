@@ -33,15 +33,20 @@ class StoresController < ApplicationController
   end
   
   # Find by NABP number and only show incoming messages
+  
   def inbox
-    
-    @store = Store.find_by(nabp: params[:nabp])
-    if @store.nil?
-      render :text => "Store with that nabp #{params[:nabp]} number not found" and return
+    if Store.verify_key_and_secret(params[:api_key], params[:api_secret])
+      @store = Store.find_by(nabp: params[:nabp])
+      if @store.nil?
+       render :text => "Store with that nabp #{params[:nabp]} number not found" and return
+      else
+        @messages = @store.messages
+        render layout: false
+      end
     else
-      @messages = @store.messages
+      render :text => "API Key and secret not valid"
     end
-    render layout: false
+    #render layout: false
   end
   
   # Show incoming & outgoing messages
