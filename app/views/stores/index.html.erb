@@ -13,6 +13,7 @@
                     <th>Phone Number</th>
                     <th>NABP</th>
                     <th>Unread Messages</th>
+                    <th>Sent Messages</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +22,16 @@
                     <td><%= link_to store.name, edit_store_path(store) %></td>
                     <td><%= store.phone %></td>
                     <td><%= store.nabp %></td>
-                    <td><%= store.messages.count %></td>
+                    <!--<td> store.messages.count</td>-->
+                    <% sent, unread = 0, 0 %>
+                    <% for message in store.messages %>
+                        <% if message.from == store.phone %>
+                            <% sent +=1 %>
+                        <% else unread +=1 %>
+                        <% end %>
+                    <% end %>
+                    <td><%= unread %></td>
+                    <td><%= sent %></td>
                 </tr>
                 <% end %>
             </tbody>
