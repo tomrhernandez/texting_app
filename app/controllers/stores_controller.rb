@@ -50,10 +50,11 @@ class StoresController < ApplicationController
   end
   
   # Show incoming & outgoing messages
-  def all
-    @store = Store.find_by(nabp: params[:nabp])
-    @messages = @store.messages
-  end
+  #def all
+  #  @store = Store.find_by(nabp: params[:nabp])
+  #  @messages = @store.messages
+  #end
+  
   
   
 end
