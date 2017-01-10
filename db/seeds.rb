@@ -7,21 +7,19 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Store.create(name: "First Pharmacy", phone: "14043419132", nabp: "1111111")
-#Store.create(name: "Second Pharmacy", phone: "14043419117", nabp: "2222222")
+Store.create(name: "Second Pharmacy", phone: "14043419117", nabp: "2222222")
 
 ### Simulated messages to and from Patient and Pharmacy ###
 
-# From Patient to Pharmacy
-Message.create(to: "14043419118", from: "16168813870", message: "Please refill all my medications", store_id: 1)
 
-# Response from Pharmacy to Patient
-Message.create(to: "16168813870", from: "14043419118", message: "Your medications are ready for pick up. Thank you and have a nice day!", store_id: 1, qs_read: true)
-Message.create(to: "14043419118", from: "16168813870", message: "Refill my blood pressure medicine", store_id: 1)
-Message.create(to: "16168813870", from: "14043419118", message: "Your blood pressure medication is ready for pick up. Thank you and have a nice day!", store_id: 1, qs_read: true)
-Message.create(to: "14043419118", from: "16168813870", message: "Do I have any refills on my Lisinopril?", store_id: 1)
-Message.create(to: "16168813870", from: "14043419118", message: "You have one refill left, would you like to get it filled?", store_id: 1, qs_read: true)
-Message.create(to: "14043419118", from: "16168813870", message: "Need refills for mine and my wife's prescriptions, thank you", store_id: 1)
-Message.create(to: "16168813870", from: "14043419118", message: "All your medications are ready. Thank you and have a nice day!", store_id: 1, qs_read: true)
+Message.create(to: "14043419132", from: "16168813870", message: "Please refill all my medications", store_id: 1)
+Message.create(to: "16168813870", from: "14043419132", message: "Your medications are ready for pick up. Thank you and have a nice day!", store_id: 1, qs_read: true)
+Message.create(to: "14043419132", from: "16168813870", message: "Refill my blood pressure medicine", store_id: 1)
+Message.create(to: "16168813870", from: "14043419132", message: "Your blood pressure medication is ready for pick up. Thank you and have a nice day!", store_id: 1, qs_read: true)
+Message.create(to: "14043419132", from: "16168813870", message: "Do I have any refills on my Lisinopril?", store_id: 1)
+Message.create(to: "16168813870", from: "14043419132", message: "You have one refill left, would you like to get it filled?", store_id: 1, qs_read: true)
+Message.create(to: "14043419132", from: "16168813870", message: "Need refills for mine and my wife's prescriptions, thank you", store_id: 1)
+Message.create(to: "16168813870", from: "14043419132", message: "All your medications are ready. Thank you and have a nice day!", store_id: 1, qs_read: true)
 
 for message in Message.all
     message.update(store_id: 1)

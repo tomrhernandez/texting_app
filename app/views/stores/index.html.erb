@@ -42,12 +42,14 @@
                     <% for message in @messages %>
                         <% if message.from == store.phone %>
                             <% sent +=1 %>
-                        <% else unread +=1 %>
+                        <% elsif message.to == store.phone && message.qs_read == false %>
+                            <% unread +=1 %>
                         <% end %>
                     <% end %>
                     <td><%= unread %></td>
                     <td><%= sent %></td>
                 </tr>
+                <% sent, unread = 0, 0 %>
                 <% end %>
             </tbody>
         </table>
