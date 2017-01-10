@@ -15,7 +15,13 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'bootstrap-sprockets';
+@import 'bootstrap-datetimepicker';
 
+.search-form {
+    margin-right: 2px;
+    margin-bottom: 20px;
+}
 .center {
     width: 55%;
     margin: auto;

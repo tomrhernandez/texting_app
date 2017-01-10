@@ -18,6 +18,8 @@ class StoresController < ApplicationController
   
   def index
     @stores = Store.all
+    @search = MessageSearch.new(params[:search])
+    @messages = @search.scope
   end
   
   def edit
