@@ -1,5 +1,5 @@
 <% @messages.each do |message| %>
     <% if !message.qs_read %>
-        <%=message.id %><%= message.created_at.strftime("%y/%m/%d")%><%= message.created_at.strftime("%H:%M:%S")%><%=message.from %><%= message.message %>$TxtMsgEnd$
+        <%=message.id %><%= message.created_at.strftime("%y/%m/%d")%><%= message.created_at.strftime("%H:%M:%S")%><%=message.from %><%= message.message %>$TxtMsgEnd$
     <% end %>
 <% end %>
