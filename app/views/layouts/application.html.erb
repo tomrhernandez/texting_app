@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>QS Texting App</title>
+  <%= javascript_include_tag "application.js" %>
   <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto" %>
   <%= stylesheet_link_tag "application.css" %>
   <%= csrf_meta_tags %>
@@ -9,7 +10,7 @@
 <body>
 <div class="container">
   <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
+    <div class="shadow alert alert-dismissable alert-<%= key %>"><%= value %></div>
   <% end %>
 </div>
 
