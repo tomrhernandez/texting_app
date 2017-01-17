@@ -14,16 +14,17 @@ class MessageSearch
     
     private
     
+    # Takes MM-DD-YYYY format and converts it to YYYY-MM-DD
     def string_formatter(date)
         month = date.slice(0..1)
-        day = date.slice(2..3)
-        year = date.slice(4..7)
+        day = date.slice(3..4)
+        year = date.slice(6..9)
         return "#{year}-#{month}-#{day}"
     end
 
     
     def parsed_date(date_string, default)
-        if date_string.length == 8
+        if date_string.length == 10
             string_formatter(date_string)
         else
         Date.parse(date_string)

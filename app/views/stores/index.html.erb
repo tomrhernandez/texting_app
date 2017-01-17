@@ -7,17 +7,26 @@
             </h1>
         </div>
         <div class="pull-right search-form">
-            <p class="form-text text-muted text-right">Date filter accepts <strong>MMDDYYYY</strong> format</p>
             <p class="form-text text-muted text-right">End date is <strong>EXCLUSIVE</strong>, defaults to tomorrow</p>
             <form class="form-inline">
                 <%= form_tag stores_path, method: :get do %>
-                <div class="form-group">
-                    <%= text_field_tag 'search[date_from]', @search.date_from, class: "form-control" %>
-                    <small id="emailHelp" class="form-text text-muted">to</small>
-                </div>
-                <div class="form-group">
-                    <%= text_field_tag 'search[date_to]', @search.date_to, class: "form-control" %>
-                </div>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker6'>
+                            <%= text_field_tag 'search[date_from]', @search.date_from, class: "form-control" %>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        <small id="emailHelp" class="form-text text-muted">to</small>
+                    </div>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker7'>
+                            <%= text_field_tag 'search[date_to]', @search.date_to, class: "form-control" %>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
                     <%= submit_tag 'Search', class: 'btn btn-success' %>
                 <% end %>
             </form>
@@ -58,3 +67,26 @@
         <%=link_to "Add New Pharmacy", new_store_path, class: "btn btn-info pull-right" %>
     </div>
 </div>
+
+<!--<input type="text" name="search[date_from]" id="search_date_from" value="2016-12-18" class="form-control">
+<input type="text" name="search[date_to]" id="search_date_to" value="2017-01-18" class="form-control"> -->
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker6').datetimepicker({
+            format: "MM-DD-YYYY",
+            extraFormats: ["YYYY-MM-DD"]
+        });
+        $('#datetimepicker7').datetimepicker({
+            useCurrent: false, //Important! See issue #1075
+            format: "MM-DD-YYYY",
+            extraFormats: ["YYYY-MM-DD"]
+        });
+        $("#datetimepicker6").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker7").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+</script>
