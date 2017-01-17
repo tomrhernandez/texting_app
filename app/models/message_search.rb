@@ -9,7 +9,7 @@ class MessageSearch
     end
     
     def scope
-        Message.where('created_at BETWEEN ? AND ?', @date_from, @date_to)
+        Message.where('DATE(created_at) BETWEEN ? AND ?', @date_from, @date_to)
     end
     
     private
