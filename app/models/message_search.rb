@@ -1,5 +1,6 @@
 class MessageSearch
     
+    # Let message search params 
     attr_reader :date_from, :date_to
     
     def initialize(params)
@@ -8,6 +9,7 @@ class MessageSearch
         @date_to = parsed_date(params[:date_to], Date.tomorrow.to_s)
     end
     
+    # Generate SQL date range query.
     def scope
         Message.where('DATE(created_at) BETWEEN ? AND ?', @date_from, @date_to)
     end
@@ -22,7 +24,7 @@ class MessageSearch
         return "#{year}-#{month}-#{day}"
     end
 
-    
+    # Turn string object into date object.
     def parsed_date(date_string, default)
         if date_string.length == 10
             string_formatter(date_string)

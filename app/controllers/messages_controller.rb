@@ -23,6 +23,7 @@ class MessagesController < ApplicationController
     end  
   end
   
+  # Takes POST method and shows url header information. Use for debugging.
   def create2
     logger.warn "*** BEGIN RAW REQUEST HEADERS ***"
       self.request.env.each do |header|
