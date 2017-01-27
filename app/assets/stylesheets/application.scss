@@ -18,6 +18,10 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap-datetimepicker';
 
+.btn {
+    font-size: 16px !important;
+}
+
 .shadow {
     -webkit-box-shadow: 0px 11px 9px 0px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0px 11px 9px 0px rgba(0, 0, 0, 0.2);

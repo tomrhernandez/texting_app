@@ -6,6 +6,10 @@
                 Pharmacy Index
             </h1>
         </div>
+        <div class="pull-left">
+            <p class="form-text text-muted">Export table to CSV file</p>
+            <button id="export" data-export="export" class="btn btn-small"><i class="glyphicon glyphicon-save-file"></i> Export</button>
+        </div>
         <div class="pull-right search-form">
             <p class="form-text text-muted">Filter table results by date. Default is past 30 days.</p>
             <form class="form-inline">
@@ -27,7 +31,7 @@
                             </span>
                         </div>
                     </div>
-                    <%= submit_tag 'Search', class: 'btn btn-success' %>
+                    <%= button_tag '<i class="glyphicon glyphicon-search"></i> Search'.html_safe, type: 'submit', class: "btn btn-success" %>
                 <% end %>
             </form>
         </div>
@@ -63,8 +67,8 @@
                 <% end %>
             </tbody>
         </table>
-        <%=link_to "Logout", logout_path, class: "btn btn-danger" %>
-        <%=link_to "Add New Pharmacy", new_store_path, class: "btn btn-info pull-right" %>
+        <%= link_to '<i class="glyphicon glyphicon-plus"></i> Add New Pharmacy'.html_safe, new_store_path, class: "btn btn-info" %>
+        <%= link_to '<i class="glyphicon glyphicon-exclamation-sign"></i> Logout'.html_safe, logout_path, class: "btn btn-danger pull-right" %>
     </div>
 </div>
 
@@ -89,4 +93,9 @@
             $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
         });
     });
+    
+    $("#export").click(function(){
+      $("table").tableToCSV();
+    });
+
 </script>
