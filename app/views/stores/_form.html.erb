@@ -8,7 +8,7 @@
         <div class="form-group">
             <%= label_tag :phone, nil, class: "font-20" %>
             <%= f.text_field :phone, class: "form-control" %>
-            <p id="passwordHelpBlock" class="form-text text-muted">phone must be in format: "12345678901"</p>
+            <p id="passwordHelpBlock" class="form-text">Phone must be in format: "12345678901"</p>
         </div>
         <div class="form-group">
             <%= label_tag :nabp, nil, class: "font-20" %>
@@ -16,6 +16,6 @@
         </div>
         <%= f.submit(@store.new_record? ? 'Create' : 'Save', class: "btn btn-success pull-right") %>
     <% end %>
-    <%= link_to "Back to Stores", stores_path, class: "btn btn-info" %>
+    <%= link_to "Back to Stores", stores_path, class: "btn btn-warning" %>
     </div>
 </div>

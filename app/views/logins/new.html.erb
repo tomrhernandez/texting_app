@@ -13,7 +13,7 @@
                 <%= password_field_tag :password, nil, class: "form-control" %>
             </div>
             <div class="form-group">
-                <%= submit_tag 'Log in', class: 'btn btn-success pull-right' %>
+                <%= button_tag '<i class="glyphicon glyphicon-log-in"></i> Log in'.html_safe, type: 'submit', class: "btn btn-success pull-right" %>
                 <br>
             </div>
         <% end %>

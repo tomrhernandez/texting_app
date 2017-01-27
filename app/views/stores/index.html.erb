@@ -7,8 +7,8 @@
             </h1>
         </div>
         <div class="pull-left">
-            <p class="form-text text-muted">Export table to CSV file</p>
-            <button id="export" data-export="export" class="btn btn-small"><i class="glyphicon glyphicon-save-file"></i> Export</button>
+            <p class="form-text text-muted">Download table as CSV file</p>
+            <button id="export" data-export="export" class="btn btn-primary"><i class="glyphicon glyphicon-save-file"></i> Download</button>
         </div>
         <div class="pull-right search-form">
             <p class="form-text text-muted">Filter table results by date. Default is past 30 days.</p>
@@ -31,7 +31,7 @@
                             </span>
                         </div>
                     </div>
-                    <%= button_tag '<i class="glyphicon glyphicon-search"></i> Search'.html_safe, type: 'submit', class: "btn btn-success" %>
+                    <%= button_tag '<i class="glyphicon glyphicon-search"></i> Search'.html_safe, type: 'submit', class: "btn btn-primary" %>
                 <% end %>
             </form>
         </div>
@@ -67,8 +67,8 @@
                 <% end %>
             </tbody>
         </table>
-        <%= link_to '<i class="glyphicon glyphicon-plus"></i> Add New Pharmacy'.html_safe, new_store_path, class: "btn btn-info" %>
-        <%= link_to '<i class="glyphicon glyphicon-exclamation-sign"></i> Logout'.html_safe, logout_path, class: "btn btn-danger pull-right" %>
+        <%= link_to '<i class="glyphicon glyphicon-plus"></i> Add New Pharmacy'.html_safe, new_store_path, class: "btn btn-success" %>
+        <%= link_to '<i class="glyphicon glyphicon-log-out"></i> Logout'.html_safe, logout_path, class: "btn btn-danger pull-right" %>
     </div>
 </div>
 
