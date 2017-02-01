@@ -46,14 +46,14 @@
                 </tr>
             </thead>
             <tbody>
-                <% for store in @stores %>
+                <% @stores.each do |store| %>
                 <tr>
                     <td><%= link_to store.name, edit_store_path(store) %></td>
                     <td><%= store.phone %></td>
                     <td><%= store.nabp %></td>
                     <!--<td> store.messages.count</td>-->
                     <% sent, unread = 0, 0 %>
-                    <% for message in @messages %>
+                    <% @messages.each do |message|  %>
                         <% if message.from == store.phone %>
                             <% sent +=1 %>
                         <% elsif message.to == store.phone && message.qs_read == false %>

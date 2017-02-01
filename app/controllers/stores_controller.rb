@@ -6,9 +6,19 @@ class StoresController < ApplicationController
     @store = Store.new
   end
   
+  #def create
+  #  logger.warn "*** BEGIN RAW REQUEST HEADERS ***"
+  #    self.request.env.each do |header|
+  #      logger.warn "#{header[0]}:#{header[1]}"
+  #      #logger.warn "#{header[1]}"
+  #    end
+  #  logger.warn "*** END RAW REQUEST HEADERS ***"
+  #  
+  #end
+  
   # Create new store.
   def create
-    @store = Store.new(name: params[:store][:name], phone: params[:store][:phone], nabp: params[:store][:nabp])
+    @store = Store.new(store_params)
     if @store.save
       flash[:success] = "Store Created"
       redirect_to stores_path
@@ -33,7 +43,7 @@ class StoresController < ApplicationController
   # Update existing store.
   def update
     @store = Store.find(params[:id])
-    @store.update(name: params[:store][:name], phone: params[:store][:phone], nabp: params[:store][:nabp])
+    @store.update(store_params)
     flash[:success] = "Store Updated"
     redirect_to stores_path
   end
@@ -52,6 +62,12 @@ class StoresController < ApplicationController
       render :text => "API Key and secret not valid"
     end
     #render layout: false
+  end
+  
+  private
+  
+  def store_params
+      params.require(:store).permit(:name, :phone, :nabp)
   end
  
   

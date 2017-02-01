@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   root 'logins#new'
-  resources :stores
+  resources :stores, except: [:show]
   resources :messages
   get '/:nabp/all' => 'stores#all'
   get '/:nabp/inbox' => 'stores#inbox', as: 'inbox'

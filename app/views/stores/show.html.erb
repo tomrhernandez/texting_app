@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                <% for store in @stores %>
+                <% @stores.each do |store| %>
                 <tr>
                     <td><%= store.name %></td>
                     <td><%= store.phone %></td>
