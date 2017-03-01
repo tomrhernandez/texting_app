@@ -1,10 +1,9 @@
 
 <div class="center">
     <div class="well top-spacing shadow">
-        <div class="jumbotron">
-            <h1 class="text-center">
-                Pharmacy Index
-            </h1>
+        <div class="jumbotron text-center">
+            <h2>QuickSCRIP Texting</h2>
+            <p>Administration Console</p>
         </div>
         <div class="pull-left">
             <p class="form-text text-muted">Download table as CSV file</p>
@@ -35,7 +34,7 @@
                 <% end %>
             </form>
         </div>
-        <table class="table table-striped table-bordered font-20" cellspacing="0" width="100%">
+        <table class="table table-striped table-bordered font-18 table-responsive" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -46,25 +45,36 @@
                 </tr>
             </thead>
             <tbody>
+                <% @t_sent, @t_unread = 0, 0 %>
                 <% @stores.each do |store| %>
-                <tr>
-                    <td><%= link_to store.name, edit_store_path(store) %></td>
-                    <td><%= store.phone %></td>
-                    <td><%= store.nabp %></td>
-                    <!--<td> store.messages.count</td>-->
-                    <% sent, unread = 0, 0 %>
-                    <% @messages.each do |message|  %>
-                        <% if message.from == store.phone %>
-                            <% sent +=1 %>
-                        <% elsif message.to == store.phone && message.qs_read == false %>
-                            <% unread +=1 %>
+                    <tr>
+                        <td><%= link_to store.name, edit_store_path(store) %></td>
+                        <td><%= store.phone %></td>
+                        <td><%= store.nabp %></td>
+                        <!--<td> store.messages.count</td>-->
+                        <% sent, unread = 0, 0 %>
+                        
+                        <% @messages.each do |message|  %>
+                            <% if message.from == store.phone %>
+                                <% sent +=1 %>
+                            <% elsif message.to == store.phone && message.qs_read == false %>
+                                <% unread +=1 %>
+                            <% end %>
                         <% end %>
-                    <% end %>
-                    <td><%= unread %></td>
-                    <td><%= sent %></td>
-                </tr>
-                <% sent, unread = 0, 0 %>
+                        <% @t_sent +=sent %>
+                        <% @t_unread +=unread %>
+                        <td><%= unread %></td>
+                        <td><%= sent %></td>
+                    </tr>
+                    <% sent, unread = 0, 0 %>
                 <% end %>
+                <tfoot>
+                    <tr>
+                        <td colspan="3"><strong>Totals</strong></td>
+                        <td><%= @t_unread %></td>
+                        <td><%= @t_sent %></td>
+                    </tr>
+                </tfoot>
             </tbody>
         </table>
         <%= link_to '<i class="glyphicon glyphicon-plus"></i> Add New Pharmacy'.html_safe, new_store_path, class: "btn btn-success" %>
