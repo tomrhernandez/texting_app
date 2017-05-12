@@ -11,7 +11,7 @@
             <p id="passwordHelpBlock" class="form-text">Phone must be in format: "12345678901"</p>
         </div>
         <div class="form-group">
-            <%= label_tag :nabp, nil, class: "font-20" %>
+            <%= label_tag :nabp, "NABP", class: "font-20" %>
             <%= f.text_field :nabp, class: "form-control" %>
         </div>
         <%= f.submit(@store.new_record? ? 'Create' : 'Save', class: "btn btn-success pull-right") %>

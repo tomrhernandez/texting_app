@@ -49,7 +49,7 @@
                 <% @stores.each do |store| %>
                     <tr>
                         <td><%= link_to store.name, edit_store_path(store) %></td>
-                        <td><%= store.phone %></td>
+                        <td><%= number_to_phone(store.phone[1..-1], delimiter: "-", country_code: store.phone[0]) %></td>
                         <td><%= store.nabp %></td>
                         <!--<td> store.messages.count</td>-->
                         <% sent, unread = 0, 0 %>
