@@ -1,7 +1,7 @@
 <% if obj.errors.any? %>
   <div class="row">
     <div class="alert alert-danger font-20 col-md-8 col-md-offset-2">
-      <h4><strong>Please correct the following errors</strong></h5>
+      <h4><strong>Whoops! Please correct the following errors.</strong></h5>
       <ul>
         <% obj.errors.full_messages.each do |msg| %>
           <li><%= msg %> </li>

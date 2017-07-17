@@ -1,5 +1,6 @@
 class StoresController < ApplicationController
   before_action :require_user, only: [:index, :edit, :update, :new]
+  before_action :set_no_cache, only: [:index, :edit, :update, :new]
   
   # Get store object ready for creation.
   def new
