@@ -18,15 +18,24 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap-datetimepicker';
 
+body {
+    font-family: Roboto;
+    //background-color: lightslategrey;
+    background-image: url("pink_dust.png");
+}
+
+
+h2 {
+    font-size: 2.8em;
+}
+
 .jumbotron {
     padding-top: 10px;
     padding-bottom: 10px;
 }
-h2 {
-    font-size: 3em;
-}
+
 .btn {
-    font-size: 16px !important;
+    font-size: 14px !important;
 }
 
 .shadow {
@@ -52,22 +61,27 @@ h2 {
     margin-top: 30px;
 }
 
-body {
-    font-family: Roboto;
-    //background-color: lightslategrey;
-    background-image: url("pink_dust.png");
+#flash {
+    position: absolute;
+    left: 33%;
+    width: 637px;
 }
 
 .field-text {
     font-size: 15;
     font-style: italic;
 }
-.font-20 {
-    font-size: 20px;
+
+.form-container {
+    margin-top: 10%;
 }
 
-.font-18 {
-    font-size: 18px;
+table {
+    font-size: 15px;
+}
+
+.font-20 {
+    font-size: 20px;
 }
 
 
