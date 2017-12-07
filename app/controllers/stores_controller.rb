@@ -17,6 +17,12 @@ class StoresController < ApplicationController
   #  
   #end
   
+  def destroy
+    Store.find(params[:id]).delete
+    flash[:success] = "Store Deleted"
+    redirect_to stores_path
+  end
+  
   # Create new store.
   def create
     @store = Store.new(store_params)

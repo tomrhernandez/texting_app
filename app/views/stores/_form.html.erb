@@ -17,5 +17,8 @@
         <%= f.submit(@store.new_record? ? 'Create' : 'Save', class: "btn btn-success pull-right") %>
     <% end %>
     <%= link_to "Back to Stores", stores_path, class: "btn btn-warning" %>
+    <% if !@store.new_record?  %>
+        <%= link_to "Delete Store", store_path(@store), method: :delete, data:{ confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+    <% end %>
     </div>
 </div>
