@@ -24,7 +24,7 @@ class MessagesController < ApplicationController
   end
   
   # Takes POST method and shows url header information. Use for debugging.
-  def create
+  def create2
     logger.warn "*** BEGIN RAW REQUEST HEADERS ***"
       self.request.env.each do |header|
         logger.warn "#{header[0]}:#{header[1]}"
@@ -34,7 +34,7 @@ class MessagesController < ApplicationController
   end
   
   # Send and receive messages. Save to database.
-  def create2
+  def create
     
     # Do this if the event is incoming. We get the incomingSms event from Sinch.
     if params[:event] == "incomingSms"
