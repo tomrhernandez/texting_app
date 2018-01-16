@@ -40,39 +40,44 @@
                     <th>Pharmacy Name</th>
                     <th>Phone Number</th>
                     <th>NABP</th>
-                    <th>Unread Messages</th>
-                    <th>Sent Messages</th>
+                    <th>Unread Texts</th>
+                    <th>Sent Texts</th>
+                    <th>Received Texts</th>
                 </tr>
             </thead>
             <tbody>
-                <% @t_sent, @t_unread = 0, 0 %>
+                <% @t_sent, @t_unread, @t_received = 0, 0, 0 %>
                 <% @stores.each do |store| %>
                     <tr>
                         <td><%= link_to store.name, edit_store_path(store) %></td>
                         <td><%= number_to_phone(store.phone[1..-1], delimiter: "-", country_code: store.phone[0]) %></td>
                         <td><%= store.nabp %></td>
                         <!--<td> store.messages.count</td>-->
-                        <% sent, unread = 0, 0 %>
+                        <% sent, unread, received = 0, 0, 0 %>
                         
                         <% @messages.each do |message|  %>
                             <% if message.from == store.phone %>
                                 <% sent +=1 %>
                             <% elsif message.to == store.phone && message.qs_read == false %>
                                 <% unread +=1 %>
+                            <% elsif message.to == store.phone && message.qs_read == true %>
+                                <% received +=1 %>
                             <% end %>
                         <% end %>
                         <% @t_sent +=sent %>
                         <% @t_unread +=unread %>
                         <td><%= unread %></td>
                         <td><%= sent %></td>
+                        <td><%= received %></td>
                     </tr>
-                    <% sent, unread = 0, 0 %>
+                    <% sent, unread, received = 0, 0, 0 %>
                 <% end %>
                 <tfoot>
                     <tr>
                         <td colspan="3"><strong>Totals</strong></td>
                         <td><%= @t_unread %></td>
                         <td><%= @t_sent %></td>
+                        <td><%= @t_received %></td>
                     </tr>
                 </tfoot>
             </tbody>
