@@ -70,7 +70,7 @@ class MessagesController < ApplicationController
             if params[:from_self]
               render 'message'
             else
-              render :text => "Message delivered! Check status here: https://messagingapi.sinch.com/v1/message/status/#{rsp["messageId"]}"
+              render :text => "Message delivered!"
             end
         else
            render :text => "API Key and Secret not valid"
