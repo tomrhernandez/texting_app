@@ -1,0 +1,33 @@
+<div class="container top-spacing">
+    <div class="center well shadow form-container">
+        <div class="jumbotron">
+            <h2 class="text-center">Send Test Text Message</h2>
+        </div>
+        <%= render 'shared/errors', obj: @message %>
+
+        <%= form_tag @message do %>
+            <div class="form-group">
+                <%= label_tag 'To' %>
+                <p id="passwordHelpBlock" class="form-text">Must be in format: "12345678901"</p>
+                <%= text_field_tag "to", nil, class: "form-control"  %>
+            </div>
+            
+            <div class="form-group">
+                <%= label_tag 'From' %>
+                <p id="passwordHelpBlock" class="form-text">Must be in format: "12345678901"</p>
+                <%= text_field_tag :from, nil, class: "form-control"  %>
+            </div>
+            
+            <div class="form-group">
+                <%= label_tag 'Message' %>
+                <%= text_field_tag :message, nil, class: "form-control"  %>
+            </div>
+            
+            <%= hidden_field_tag :api_key, @qs_api_key %>
+            <%= hidden_field_tag :api_secret, @qs_api_secret %>
+            <%= hidden_field_tag :from_self, true %>
+            
+            <%= submit_tag "Send", class: "btn btn-success" %>
+        <% end %>
+    </div>
+</div>

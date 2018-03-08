@@ -6,8 +6,15 @@
             <p>Administration Console</p>
         </div>
         <div class="pull-left">
-            <p class="form-text text-muted">Download table as CSV file</p>
-            <button id="export" data-export="export" class="btn btn-primary"><i class="glyphicon glyphicon-save-file"></i> Download</button>
+            <p class="form-text text-muted">Download CSV file</p>
+            <button id="export" data-export="export" class="btn btn-primary" ><i class="glyphicon glyphicon-save-file"></i> Download</button>
+        </div>
+        <div class="pull-left">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="pull-left">
+            <p class="form-text text-muted">Send Test Message</p>
+            <a href="<%=new_message_path%>"><button class="btn btn-warning"><i class="glyphicon glyphicon-phone"></i> Test Message</button></a>
         </div>
         <div class="pull-right search-form">
             <p class="form-text text-muted">Filter table results by date. Default is past 30 days.</p>

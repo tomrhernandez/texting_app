@@ -33,6 +33,13 @@ class MessagesController < ApplicationController
     logger.warn "*** END RAW REQUEST HEADERS ***"
   end
   
+  #Send txt message manually, and see the response.
+  def new
+    @message = Message.new
+    @qs_api_key = ENV["qs_api_key"]
+    @qs_api_secret = ENV["qs_api_secret"]
+  end
+  
   # Send and receive messages. Save to database.
   def create
     
@@ -59,8 +66,12 @@ class MessagesController < ApplicationController
             @message = Message.new({:to => params[:to], :from => @store.phone, :message => params[:message], :store_id => @store.id, :qs_read => true})
             @message.save
             #SinchSms.send(ENV["SINCH_API_KEY"], ENV["SINCH_API_SECRET"], params[:message], params[:to], params[:from])
-            SinchSms.send(ENV["sinch_api_key"], ENV["sinch_api_secret"], params[:message], params[:to], params[:from])
-            render :text => "Message delivered!"
+            @rsp = SinchSms.send(ENV["sinch_api_key"], ENV["sinch_api_secret"], params[:message], params[:to], params[:from])
+            if params[:from_self]
+              render 'message'
+            else
+              render :text => "Message delivered! Check status here: https://messagingapi.sinch.com/v1/message/status/#{rsp["messageId"]}"
+            end
         else
            render :text => "API Key and Secret not valid"
         end
