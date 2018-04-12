@@ -41,55 +41,57 @@
                 <% end %>
             </form>
         </div>
-        <table class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th>Pharmacy Name</th>
-                    <th>Phone Number</th>
-                    <th>NABP</th>
-                    <th>Unread Texts</th>
-                    <th>Sent Texts</th>
-                    <th>Received Texts</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @t_sent, @t_unread, @t_received = 0, 0, 0 %>
-                <% @stores.each do |store| %>
+        
+            <table class="table table-striped table-bordered table-responsive header-fixed" cellspacing="0" width="100%">
+                <thead>
                     <tr>
-                        <td><%= link_to store.name, edit_store_path(store) %></td>
-                        <td><%= number_to_phone(store.phone[1..-1], delimiter: "-", country_code: store.phone[0]) %></td>
-                        <td><%= store.nabp %></td>
-                        <!--<td> store.messages.count</td>-->
-                        <% sent, unread, received = 0, 0, 0 %>
-                        
-                        <% @messages.each do |message|  %>
-                            <% if message.from == store.phone %>
-                                <% sent +=1 %>
-                            <% elsif message.to == store.phone && message.qs_read == false %>
-                                <% unread +=1 %>
-                            <% elsif message.to == store.phone && message.qs_read == true %>
-                                <% received +=1 %>
+                        <th>Pharmacy Name</th>
+                        <th>Phone Number</th>
+                        <th>NABP</th>
+                        <th>Unread Texts</th>
+                        <th>Sent Texts</th>
+                        <th>Received Texts</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @t_sent, @t_unread, @t_received = 0, 0, 0 %>
+                    <% @stores.each do |store| %>
+                        <tr>
+                            <td><%= link_to store.name, edit_store_path(store) %></td>
+                            <td><%= number_to_phone(store.phone[1..-1], delimiter: "-", country_code: store.phone[0]) %></td>
+                            <td><%= store.nabp %></td>
+                            <!--<td> store.messages.count</td>-->
+                            <% sent, unread, received = 0, 0, 0 %>
+                            
+                            <% @messages.each do |message|  %>
+                                <% if message.from == store.phone %>
+                                    <% sent +=1 %>
+                                <% elsif message.to == store.phone && message.qs_read == false %>
+                                    <% unread +=1 %>
+                                <% elsif message.to == store.phone && message.qs_read == true %>
+                                    <% received +=1 %>
+                                <% end %>
                             <% end %>
-                        <% end %>
-                        <% @t_sent +=sent %>
-                        <% @t_unread +=unread %>
-                        <% @t_received +=received %>
-                        <td><%= unread %></td>
-                        <td><%= sent %></td>
-                        <td><%= received %></td>
-                    </tr>
-                    <% sent, unread, received = 0, 0, 0 %>
-                <% end %>
-                <tfoot>
-                    <tr>
-                        <td colspan="3"><strong>Totals</strong></td>
-                        <td><%= @t_unread %></td>
-                        <td><%= @t_sent %></td>
-                        <td><%= @t_received %></td>
-                    </tr>
-                </tfoot>
-            </tbody>
-        </table>
+                            <% @t_sent +=sent %>
+                            <% @t_unread +=unread %>
+                            <% @t_received +=received %>
+                            <td><%= unread %></td>
+                            <td><%= sent %></td>
+                            <td><%= received %></td>
+                        </tr>
+                        <% sent, unread, received = 0, 0, 0 %>
+                    <% end %>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3"><strong>Totals</strong></td>
+                            <td><%= @t_unread %></td>
+                            <td><%= @t_sent %></td>
+                            <td><%= @t_received %></td>
+                        </tr>
+                    </tfoot>
+                </tbody>
+            </table>
+            
         <%= link_to '<i class="glyphicon glyphicon-plus"></i> Add New Pharmacy'.html_safe, new_store_path, class: "btn btn-success" %>
         <%= link_to '<i class="glyphicon glyphicon-log-out"></i> Logout'.html_safe, logout_path, class: "btn btn-danger pull-right" %>
     </div>
@@ -99,7 +101,7 @@
 <input type="text" name="search[date_to]" id="search_date_to" value="2017-01-18" class="form-control"> -->
 
 <script type="text/javascript">
-    $(function () {
+    $(function (){
         $('#datetimepicker6').datetimepicker({
             format: "MM-DD-YYYY",
             extraFormats: ["YYYY-MM-DD"]
@@ -109,16 +111,22 @@
             format: "MM-DD-YYYY",
             extraFormats: ["YYYY-MM-DD"]
         });
-        $("#datetimepicker6").on("dp.change", function (e) {
+        $("#datetimepicker6").on("dp.change", function (e){
             $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
         });
-        $("#datetimepicker7").on("dp.change", function (e) {
+        $("#datetimepicker7").on("dp.change", function (e){
             $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
         });
+        
+        var $table = $('table');
+        $table.floatThead();
+        
     });
     
     $("#export").click(function(){
       $("table").tableToCSV();
     });
+    
+    
 
 </script>
